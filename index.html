@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Javascript - Quick introduction to the language</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -45,13 +45,356 @@
 				<section>
 					<h1>Javascript</h1>
 					<h3>Quick introduction to the language</h3>
+					<br>
 					<p>
 						<small>Created by <a href="http://www.nuageprive.fr">Camel Aissani</a> / <a href="https://twitter.com/camelaissani">@camelaissani</a></small>
+						<br>
+						<small>Inspired by <a href="http;//javascript.crockford.com">Douglas Crockford</a></small>
 					</p>
 				</section>
+				<section>
+						<h2>JavaScript !== Java </h2>
+						<br>
+						<p>JavaScript is not Java or a subset af Java but it is a complete programming language.</p>
+				</section>
+				<section>
+					<h1>The little story</h1>
+				</section>
+				<section>
+					<h4>In 1992 (James Gosling at Sun and FirstPerson)</h4>
+					<p>C++++ -> Oak -> Java<br>
+						First demonstrated with HotJava browser (Applet)
+					</p>
+					<br>
+					<h4>In 1995 (Brendan Eich at Netscape)</h4>
+					<p>Mocha -> LiveScript<br>
+					First language in the web browser/ web server</p>
+					<br>
 
+					<p>Finally Sun and Netscape made an alliance to escape microsoft and renamed LiveScript to JavaScript</p>
+				</section>
+				<section>
+					<h2>Key ideas</h2>
+					<br>
+					<ul>
+						<li><p>Load and go delivery (not compiled / embedded in web pages)</p></li>
+						<li><p>Loose typing (very controversal)</p></li>
+						<li><p>Objects as general containers</p></li>
+						<li><p>Prototypal inheritance (not class inheritance)</p></li>
+						<li><p>Lambda (function as first class objects)</p></li>
+						<li><p>Linkage though global variables</p></li>
+					</ul>
+				</section>
+				<section>
+					<h2>Values</h1>
+					<br>
+					<p>Number</p>
+					<p>String</p>
+					<p>Boolean</p>
+					<p>null</p>
+					<p>undefined</p>
+					<p>Object</p>
+				</section>
+				<section>
+					<h2>Statements</h2>
+					<p>if</p>
+					<p>switch</p>
+					<p>while</p>
+					<p>do</p>
+					<p>for</p>
+					<p>break</p>
+					<p>continue</p>
+					<p>return</p>
+					<p>try / throw</p>
+					<p>function</p>
+					<p>var</p>
+				</section>
+				<section>
+					<h2>Falsy values</h4>
+					<br>
+					<ul>
+						<li>false</li>
+						<li>null</li>
+						<li>undefined</li>
+						<li>""</li>
+						<li>0</li>
+						<li>NaN</li>
+					</ul>
+					<br>
+					<br>
+					<h2>Truthy values</h2>
+					<p>All other values (including all objects)</p>
+				</section>
+				<section>
+					<h2>Scope</h2>
+					<br>
+					<p>{bocks} do not have scope<p>
+					<br>
+					<h3>only function have scope</h3>
+					<br>
+					<p>vars defined inside a function are not visible outside of the function</p>
+				</section>
+				<section>
+					<h2>Object</h2>
+					<br>
+					<p>
+					Unification of Object and Hashtable (member is pair of key/value)
+					members can be accessed:
+					</p>
+					<br>
+					<pre><code data-trim contenteditable>
+myObject.firstname = 'Douglas';
+myObject['lastname'] = 'Crockford';
+					</code></pre>
+				</section>
+				<section>
+					<p>Create an object</p>
+					<pre><code data-trim contenteditable>
+var myObject1 = new Object();
+var myObject2 = Object(Object.prototype);
+
+// literal notation:
+var myObject3 = {};
+var myObkect4 = {firstname: 'Douglas', lastname:'Crockford'}
+
+//Maker function
+var myObject5 = maker('Douglas', 'Crockford');
+
+function maker(firstname, lastname) {
+	var it = {};
+	it.firstname = firstname;
+	it.lastname = lastname;
+	return it;
+}
+					</code></pre>
+	<p>An object can contain an object as member</p>
+					<pre><code data-trim contenteditable>
+var myObject6 = {
+	firstname: 'Douglas', 
+	lastname:'Crockford',
+	friend: {
+		firstname: 'Camel', 
+		lastname:'Aissani'
+	}
+}
+					</code></pre>
+				</section>
+				<section>
+					<h2>Augmentation</h2>
+					<br>
+					<p>At any time you can add new members to any object by simple assignment</p>
+					<pre><code data-trim contenteditable>
+myObject.format.colorModel = "red";
+					</code></pre>
+				</section>
+				<section>
+					<h2>Delete</h2>
+					<br>
+					<p>Members can be remove from an object with the delete operator</p>
+					<br>
+					<pre><code data-trim contenteditable>
+delete myObject['name'];
+delete myObject.firstname;
+					</code></pre>
+				</section>
+				<section>
+					<h2>Linkage</h2>
+					<br>
+					<p>Linkage provides a simple inheritance mechanism between objects.</p>
+					<p>An object contains a secret pointer to another object.</p>
+					<p>All objects are linked directly or indirectly to Object.prototype.</p>
+					<p>Object.prototype provides some basic methods. <small>ex: hasOwnProperty(name) but no toString or equals methods</small></p>
+				</section>
+				<section>
+					<h2>Linkage sample</h2>
+					<br>
+					<pre><code data-trim contenteditable>
+var myOldObject = {
+	name:'Douglas Crockford', 
+	grade: 'A', 
+	level: 3
+};
+
+var myNewObject = Object(myOldObject); 
+myNewObject.name = 'Camel Aissani';
+myNewObject.level += 1;
+myNewObject.language = 'french';
+					</code></pre>
+					<br>
+					<p>Results</p>
+					<ul>
+						<li>name -> Camel Aissani</li>
+						<li>grade -> A (myOldObject.grade)</li>
+						<li>level -> 4  (myOldObject.level + 1 )</li>
+						<li>language -> (myNewObject.language)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Prototypal inheritance</h2>
+					<br>
+					<p>Object languages have classes, methods, constructors and modules.</p>
+					<br>
+					<p>JavaScript has only functions that doing the job but differently.</p>
+				</section>
+				<section>
+					<h2>Functions</h2> 
+					<br>
+					<p>Functions are objects and can contain members</p>
+
+					<pre><code data-trim contenteditable>
+var myObject = function name(parameters) {
+
+};
+					</code></pre>
+					<p>parameters can be values, objects, function</p>
+					<br>
+					<p>function can be defined in function:</p>
+
+					<pre><code data-trim contenteditable>
+function name(parameters) {
+
+	function foo(otherParameters) {
+		// scope of the parent function is available here
+		// Called Static Scoping / Lexical Scoping
+	}
+}
+					</code></pre>
+				</section>
+				<section>
+					<h2>Closure</h2>
+					<br>
+					<p>The scope of the parent function from a inner function is still 
+						available even after the parent function has returned.</p>
+						<pre><code data-trim contenteditable>
+function parent() {
+	var value = 1;
+
+	function inner() {
+		value++;
+		if (value===3) {
+			return;
+		}
+		setTimeout(inner, 100);
+	}
+
+	setTimeout(inner, 100); // (1)
+}
+						</code></pre>
+						<small>
+						<ol>
+							<li>After (1) the parent function return and it finnished.</li>
+							<li>100ms later inner is called and "value" is still available (value=2)</li>	
+							<li>100ms later inner is called and "value" is still available (value=3)</li>
+						</ol>
+						</small>
+				</section>
+				<section>
+					<h2>Function call types</h2>
+					<br>
+					<p>Function can be called as function form:</p>
+						<pre><code data-trim contenteditable>
+functionObject(parameters)
+						</code></pre>
+						
+						<p>As method form:</p>
+						<pre><code data-trim contenteditable>
+thisObject.methodName(parameters) 
+						</code></pre>
+						<p> As constructor form:</p>
+						<pre><code data-trim contenteditable>
+new functionObject(parameters)
+						</code></pre>
+						<p> As apply form:</p>
+						<pre><code data-trim contenteditable>
+functionObject.apply(thisObject, [parameters])
+						</code></pre>
+						<br>
+						<p>Inside a function we have two integrated variables.</p>
+						<ul>
+							<li>"this" access to all the members / functions of the object</li>
+							<li>"arguments" (array of all parameters)</li>
+						</ul>
+				</section>
+				<section>
+					<h2>Arrays</h2>
+					<br>
+					<p>Array inherits from Object</p>
+					<p>Indexes are strings (int indexed are converted into strings)</p>
+					<p>Length is dynamic</p>
+					<br>
+					<p>Create array:</p>
+						<pre><code data-trim contenteditable>
+var myArray = new Array();
+var myArray = [];
+var myArray = ['blue', 'yellow', 'red'];
+
+Update an item:
+myArray[1] = 'gray';
+
+Add an item:
+myArray[3] = 'pink';
+						</code></pre>
+						<br>
+						<p>Read an item:</p>
+						<ul>
+							<li>'pink' -> (myArray[3])</li>
+							<li>'pink' -> myArray.'3'  not a best practice to do that</li>
+						</ul>
+				</section>
+				<section>
+					<h2>Delete</h2>
+					<br>
+					<p>Delete an element in array</p>
+					<pre><code data-trim contenteditable>
+var myArray = ['blue', 'yellow', 'red'];
+delete myArray[1];
+
+// ['blue', undefined, 'red']
+
+myArraysplice(1,1);
+
+// ['blue', 'red']
+					</code></pre>
+
+				</section>
+				
+
+				<section>
+					<h2>Global object</h2>
+					<br>
+					<p>Container for all global variables and all built-in objects (In browsers: window, document, console...) </p>
+					<br>
+					<p>Any variables declared without var is considered as global by default.</p>
+					<br>
+					<p>Then global variables are evil (cooperating applications can clobber each other)</p>
+				</section>
+
+				<section>
+					<h2>Namespace / Encapsulate</h2>
+					<br>
+					<p>Object is a separate namespace.</p>
+					<br>
+					<p>Encapsulation with function</p>
+						<pre><code data-trim contenteditable>
+MYLIB = function() {
+	// define private variables and functions
+	return {
+		// here the public function
+		foo1 : function() {},
+		foo2: function() {}
+	};
+}();
+						</code></pre>
+				</section>
+				<section>
+					<h3>Live coding</h3>
+				</section>
+				<section>
+					<h1>Thank you!</h1>
+				</section>
+				
 			</div>
-
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
